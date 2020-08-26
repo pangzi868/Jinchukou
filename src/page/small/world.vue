@@ -6,7 +6,7 @@
       <div class="global-title">中国进出口银行</div>
       <div class="right-time"></div>
     </div>
-    <!-- <world-chart class="world-chart" /> -->
+    <world-chart class="world-chart" />
     <left-indicator class="left-indicator" />
   </div>
 </template>

@@ -28,12 +28,12 @@ export default {
     return {
       data: [
         {
-          name: "表内资产余额",
+          name: "政策性贷款余额",
           value1: "24.3%",
           value2: 1234
         },
         {
-          name: "表外资产余额",
+          name: "自营性贷款余额",
           value1: "24.3%",
           value2: 1234
         }

@@ -144,6 +144,8 @@ export default {
           {
             type: "value",
             splitNumber: 5,
+            min: 0,
+            max: 100,
             axisLabel: {
               textStyle: {
                 color: "#a8aab0",
@@ -259,7 +261,7 @@ export default {
             data: data.y
               ? data.y[1].data
               : [8, 5, 25, 30, 35, 55, 62, 78, 65, 55, 60, 92],
-            yAxisIndex: 1,
+            yAxisIndex: 0,
             smooth: 0.5,
             symbolSize: 0,
             symbol: "circle",

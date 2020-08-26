@@ -28,14 +28,14 @@
         </div>
       </div>
     </div>
-    <img class="tese-img" :src="Tese" alt @click="jump"/>
+    <img class="tese-img" :src="Tese" alt @click="jump" />
     <map-chart class="map-charts" />
     <div class="bottom-left-ind">
       <span class="ind-name">巴黎分行</span>
       <span class="ind-val">50亿</span>
     </div>
     <div class="bottom-side">
-      <div class="bottom-title">政策性、自营性贷款分析</div>
+      <div class="bottom-title">政策性、自营性贷款余额分析</div>
       <div class="air-span"></div>
       <pie-chart class="pie-chart" ids="pieChart" :chartData="[]" />
       <img class="divisition" :src="Divisition" alt />
@@ -46,15 +46,29 @@
       <div class="right-one">
         <div class="content-title-frame">资产效益</div>
         <div class="content-frame">
+          <div class="indi-box">
+            <div class="indi-single" v-for="item in rightIndi" :key="item.name">
+              <img class="img-span" :src="item.img" alt />
+              <div class="shouru-span">
+                <span class="item-name">{{item.name}}</span>
+                <span class="item-value">{{item.value}}</span>
+                <span class="item-unit">亿</span>
+              </div>
+              <div class="right-span">
+                <span class="right-name">同比</span>
+                <span class="right-perc">{{item.perc}}</span>
+              </div>
+            </div>
+          </div>
           <right-one-chart class="column-line" ids="right1" :chartData="[]" />
         </div>
       </div>
-      <div class="right-two">
+      <!-- <div class="right-two">
         <div class="content-title-frame">利息净收入</div>
         <div class="content-frame">
           <right-two-chart class="column-line" ids="right2" :chartData="[]" />
         </div>
-      </div>
+      </div>-->
       <div class="right-three">
         <div class="content-title-frame">资产质量</div>
         <div class="content-frame">
@@ -71,6 +85,10 @@
 import Vue from "vue";
 import Tese from "../../assets/images/jinchukou/tese.png";
 import Divisition from "../../assets/images/jinchukou/Rectangle-32@1x.png";
+
+import Money from "../../assets/images/jinchukou/right1.png";
+import Bill from "../../assets/images/jinchukou/right2.png";
+import Trend from "../../assets/images/jinchukou/right3.png";
 
 import LeftIndicator from "../../components/china/leftIndicator.vue";
 import BottomIndicator from "../../components/china/bottomIndicator.vue";
@@ -90,13 +108,33 @@ export default {
   data() {
     return {
       Tese: Tese,
-      Divisition: Divisition
+      Divisition: Divisition,
+      rightIndi: [
+        {
+          name: "营业收入",
+          value: "128.23",
+          perc: "23.4%",
+          img: Money
+        },
+        {
+          name: "营业支出",
+          value: "168.23",
+          perc: "13.4%",
+          img: Bill
+        },
+        {
+          name: "净利润",
+          value: "120.23",
+          perc: "29.4%",
+          img: Trend
+        }
+      ]
     };
   },
   computed: {},
   methods: {
     jump() {
-      this.$router.push('/manage/tese')
+      this.$router.push("/manage/tese");
     }
   },
   beforeDestroy() {},
@@ -123,7 +161,7 @@ export default {
   width: 3840px;
   height: 2160px;
   position: relative;
-  
+
   background: url("../../assets/images/jinchukou/bg@1x.png") no-repeat;
   background-size: 100% 100%;
   font-size: 28px;
@@ -303,8 +341,8 @@ export default {
       background: url("../../assets/images/jinchukou/frame-bk.png") no-repeat;
       background-size: 100% 100%;
       position: absolute;
-
-      padding: 14px 32px;
+      font-size: 42px;
+      padding: 10px 32px;
       width: 94.5%;
       height: 80px;
     }
@@ -359,17 +397,70 @@ export default {
       position: absolute;
       left: 0;
       top: 0;
-      height: 443px;
+      height: 983px;
       width: 100%;
       .content-frame {
         background: url("../../assets/images/jinchukou/framebg2.png") no-repeat;
         background-size: 100% 100%;
         width: 100%;
         padding: 32px;
-        height: 363px;
+        height: 883px;
+        .indi-box {
+          width: 100%;
+          height: 50%;
+          .indi-single {
+            height: 30%;
+            width: 100%;
+            background: url("../../assets/images/jinchukou/xiaohu-frame.png")
+              no-repeat;
+            background-size: 100% 100%;
+            margin-bottom: 20px;
+            .img-span {
+              display: inline-block;
+              width: 20%;
+              padding: 20px 40px;
+              height: 100%;
+            }
+            .shouru-span {
+              display: inline-block;
+              width: 50%;
+              height: 100%;
+              vertical-align: top;
+              padding: 20px;
+              .item-name {
+                display: block;
+              }
+              .item-unit {
+                display: inline-block;
+                font-size: 24px;
+              }
+              .item-value {
+                display: inline-block;
+                color: #f5b559;
+                font-size: 36px;
+                margin-right: 20px;
+              }
+            }
+            .right-span {
+              display: inline-block;
+              width: 30%;
+              height: 100%;
+              vertical-align: sup;
+              padding: 20px;
+              .right-name {
+                display: inline-block;
+                color: rgba(255, 255, 255, 0.7);
+                margin-right: 20px;
+              }
+              .right-perc {
+                display: inline-block;
+              }
+            }
+          }
+        }
         .column-line {
           width: 100%;
-          height: 100%;
+          height: 50%;
         }
       }
     }
@@ -387,7 +478,7 @@ export default {
         padding: 32px;
         .column-line {
           width: 100%;
-          height: 100%;
+          height: 50%;
         }
       }
     }

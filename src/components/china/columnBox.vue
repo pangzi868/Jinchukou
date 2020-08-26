@@ -38,25 +38,25 @@ export default {
             fontStyle: "normal",
             fontFamily: "微软雅黑",
             fontSize: 24
-          },
-        //   formatter: function(params) {
-        //     let tempStr = params.map((item, index) => {
-        //       return (
-        //         "</br><span style='display:inline-block;margin-right:25px;border-radius:25px;width:20px;height:20px;background-color:" +
-        //         colorArr[index] +
-        //         "'></span>" +
-        //         item.seriesName +
-        //         "：" +
-        //         (item.value
-        //           ? item.seriesName.indexOf("数") !== -1 ||
-        //             item.value.indexOf(".") === -1
-        //             ? item.value
-        //             : parseFloat(item.value).toFixed(2)
-        //           : "0")
-        //       );
-        //     });
-        //     return params[0].name + tempStr.join(" ");
-        //   }
+          }
+          //   formatter: function(params) {
+          //     let tempStr = params.map((item, index) => {
+          //       return (
+          //         "</br><span style='display:inline-block;margin-right:25px;border-radius:25px;width:20px;height:20px;background-color:" +
+          //         colorArr[index] +
+          //         "'></span>" +
+          //         item.seriesName +
+          //         "：" +
+          //         (item.value
+          //           ? item.seriesName.indexOf("数") !== -1 ||
+          //             item.value.indexOf(".") === -1
+          //             ? item.value
+          //             : parseFloat(item.value).toFixed(2)
+          //           : "0")
+          //       );
+          //     });
+          //     return params[0].name + tempStr.join(" ");
+          //   }
         },
         grid: {
           left: "3%",
@@ -147,6 +147,8 @@ export default {
           {
             type: "value",
             splitNumber: 5,
+            min: 0,
+            max: 100,
             axisLabel: {
               textStyle: {
                 color: "#a8aab0",

@@ -136,6 +136,9 @@ export default {
           {
             type: "value",
             splitNumber: 5,
+
+            min: 0,
+            max: 200,
             axisLabel: {
               textStyle: {
                 color: "#a8aab0",

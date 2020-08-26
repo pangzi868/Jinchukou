@@ -58,7 +58,7 @@ export default {
         广西: [108.479, 23.1152],
         海南: [110.3893, 19.8516],
         黑龙江: [127.9688, 45.368],
-        台湾: [121.4648, 25.563]
+        中国台湾: [121.4648, 25.563]
       };
       var colorData = [
         { name: "北京", value: 199 },
@@ -91,10 +91,10 @@ export default {
         { name: "新疆", value: 18 },
         { name: "广东", value: 183 },
         { name: "香港", value: 203 },
-        { name: "澳门", value: 199 },
+        { name: "澳门", value: 0 },
         { name: "广西", value: 59 },
         { name: "海南", value: 14 },
-        { name: "台湾", value: 15 },
+        { name: "中国台湾", value: 0 },
         { name: "南海诸岛", value: 16 }
       ];
 
@@ -120,16 +120,31 @@ export default {
           show: true
         },
         visualMap: {
-          show: false,
-          min: 0,
-          max: 200,
-          left: "10%",
-          top: "bottom",
+          show: true,
+          type: "piecewise",
+          // min: 0,
+          // max: 200,
+          left: "18%",
+          top: "70%",
           calculable: true,
           seriesIndex: [1],
+          pieces: [
+            { gt: 0, lte: 40, label: "10 ～ 40亿" }, // (10, 200]
+            { gt: 40, lte: 80, label: "40 ～ 80亿" }, // (200, 300]
+            { gt: 80, lte: 120, label: "80 ～ 120亿" }, // (310, 1000]
+            { gt: 120, lte: 200, label: "120 ～ 200亿" }, // (900, 1500]
+            { gt: 200, label: "> 200亿" } // (1500, Infinity]
+          ],
           inRange: {
-            color: ["rgba(14,57,115,1)", "rgba(143,242,255,1)"] // 蓝绿
-          }
+            color: ["rgba(143,242,255,1)", "rgba(14,57,115,1)"] // 蓝绿
+          },
+
+          textStyle: {
+            color: "rgba(255, 255, 255, 0.7)",
+            fontSize: 28
+          },
+          itemGap: 20,
+          itemSymbol: 28
         },
         geo: {
           map: "china",
@@ -218,15 +233,27 @@ export default {
               show: true,
               formatter: function(params) {
                 // console.log(params);
-                return (
-                  "<span style='color: rgba(255,255,255,1);font-family: PingFang SC;font-weight: medium;font-size: 32px;line-height: normal;letter-spacing: 0px;text-align: left;'>" +
-                  params.data.name +
-                  "</span></br>" +
-                  "<span style='opacity: 0.7200000286102295;color: rgba(255,255,255,1);font-family: PingFang SC;font-weight: regular;font-size: 24px;line-height: normal;letter-spacing: 0px;text-align: left;'>贷款余额</span>：" +
-                  "</br><span style='color: rgba(255,146,41,1);font-family: Microsoft YaHei;font-weight: bold;font-size: 36px;line-height: normal;letter-spacing: 0px;text-align: left;'>" +
-                  that.thousandFormat(params.value, 2) +
-                  " 亿</span>"
-                );
+                if (
+                  params.data.name === "中国台湾" ||
+                  params.data.name === "香港" ||
+                  params.data.name === "澳门"
+                ) {
+                  return (
+                    "<span style='color: rgba(255,255,255,1);font-family: PingFang SC;font-weight: medium;font-size: 32px;line-height: normal;letter-spacing: 0px;text-align: left;'>" +
+                    params.data.name +
+                    "</span>"
+                  );
+                } else {
+                  return (
+                    "<span style='color: rgba(255,255,255,1);font-family: PingFang SC;font-weight: medium;font-size: 32px;line-height: normal;letter-spacing: 0px;text-align: left;'>" +
+                    params.data.name +
+                    "</span></br>" +
+                    "<span style='opacity: 0.7200000286102295;color: rgba(255,255,255,1);font-family: PingFang SC;font-weight: regular;font-size: 24px;line-height: normal;letter-spacing: 0px;text-align: left;'>贷款余额</span>：" +
+                    "</br><span style='color: rgba(255,146,41,1);font-family: Microsoft YaHei;font-weight: bold;font-size: 36px;line-height: normal;letter-spacing: 0px;text-align: left;'>" +
+                    that.thousandFormat(params.value, 2) +
+                    " 亿</span>"
+                  );
+                }
                 // return (
                 //   "{fline|" + " " + params.name + " " + "重点关注" + "}"
                 // );

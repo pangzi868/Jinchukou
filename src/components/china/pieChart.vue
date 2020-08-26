@@ -185,8 +185,8 @@ export default {
                   };
                 })
               : [
-                  { name: "政策性余额", value: 3.21 },
-                  { name: "自营性余额", value: 5.35 }
+                  { name: "政策性", value: 3.21 },
+                  { name: "自营性", value: 5.35 }
                   // { name: "南京c", value: 100 }
                 ]
           }

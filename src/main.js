@@ -15,7 +15,7 @@ import * as filters from './api/filter.js'
 import 'ant-design-vue/dist/antd.css';
 import './assets/styles/common/index.less';
 import 'moment/locale/zh-cn'
-import '../node_modules/echarts/map/js/world.js' // 引入世界地图
+import 'echarts/map/js/world.js' // 引入世界地图
 import store from '@/store/index'
 
 moment.locale('zh-cn');
@@ -40,7 +40,7 @@ router.beforeEach((to, from, next) => {
     //do something => getUserInfo
     next()
   } else {
-      
+
   }
 })
 
